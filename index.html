@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>perity agencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #4ade80; /* emerald-400 */
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-weight: 900;
+    margin-top: 0;
+    color: #a5b4fc; /* indigo-300 */
+  }
+  p {
+    margin: 0 0 1.25rem 0;
+  }
+  button {
+    font-family: inherit;
+  }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  /* Header */
+  header {
+    background: rgba(18, 18, 18, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #2d2d2d;
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+  .logo {
+    font-size: 1.65rem;
+    font-weight: 900;
+    color: #7c3aed; /* violet-600 */
+    letter-spacing: 0.05em;
+  }
+  nav.desktop-nav {
+    display: flex;
+    gap: 32px;
+  }
+  nav.desktop-nav a {
+    font-weight: 600;
+    padding: 8px 4px;
+    position: relative;
+  }
+  nav.desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  nav.desktop-nav a:hover::after,
+  nav.desktop-nav a:focus::after {
+    width: 100%;
+  }
+  /* Mobile nav */
+  .mobile-nav-wrapper {
+    display: none;
+    position: relative;
+  }
+  #mobile-nav-toggle {
+    background: none;
+    border: none;
+    color: #a5b4fc;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  nav.mobile-nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 64px;
+    background: rgba(18, 18, 18, 0.98);
+    width: 240px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    flex-direction: column;
+    padding: 16px 0;
+    z-index: 200;
+  }
+  nav.mobile-nav a {
+    display: block;
+    padding: 12px 24px;
+    font-weight: 700;
+    border-bottom: 1px solid #2d2d2d;
+  }
+  nav.mobile-nav a:last-child {
+    border-bottom: none;
+  }
+  nav.mobile-nav.show {
+    display: flex;
+  }
+  .branding {
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            margin: 20px 0; /* Space around the branding section */
+        }
+        .branding img {
+            width: 100px; /* Adjust the size of the image */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 20px; /* Space between image and text */
+        }
+        .branding h1 {
+            color: #7c3aed99; /* Color for PERITY */
+            margin: 0; /* Remove default margin */
+        }
+        .branding h2 {
+            color: #7c3aed99; /* Color for AGENCIES */
+            margin: 0; /* Remove default margin */
+        }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background:url("garage.png") center/cover no-repeat;
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .hero-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px #1e40af;
+  }
+  .hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 8px #1e40af;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, #7c3aed 0%, #22d3ee 100%);
+    border: none;
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    box-shadow: 0 4px 35px rgba(124, 58, 237, 0.7);
+    transform: translateY(-3px);
+    outline: none;
+  }
+  /* Sections */
+  section {
+    padding: 64px 16px;
+  }
+  h2.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 48px;
+    text-align: center;
+    color: #a5b4fc;
+  }
+  /* Services */
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: #1f2937;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    box-shadow: 0 8px 36px rgba(124, 58, 237, 0.6);
+  }
+  .service-card h3 {
+    color: #7c3aed;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+    .service-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    }
+.service-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    border: 2px solid #374151;
+    height: 200px; /* Set a fixed height for uniformity */
+  }
+  .service-item img,
+.service-item video {
+    width: 100%;
+    height: 100%; /* Ensures the media fits the fixed height */
+    display: block;
+    transition: transform 0.3s ease;
+    object-fit: cover; /* Maintains aspect ratio and covers the area */
+}
+
+.service-item:hover img,
+.service-item:hover video,
+.service-item:focus-within img,
+.service-item:focus-within video {
+    transform: scale(1.05); /* Scale effect on hover/focus */
+  }
+  /* Contact */
+  .contact-info {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-details h3 {
+    color: #7c3aed;
+    margin-bottom: 12px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+  }
+  .material-icons.contact-icon {
+    color: #22d3ee;
+  }
+  iframe.map-embed {
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+    min-height: 280px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  /* Contact form */
+  form.contact-form {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+  }
+  form.contact-form label {
+    font-weight: 700;
+    color: #a5b4fc;
+  }
+  form.contact-form input,
+  form.contact-form textarea {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  form.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  form.contact-form button {
+    background: #7c3aed;
+    color: white;
+    font-weight: 700;
+    padding: 14px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  form.contact-form button:hover,
+  form.contact-form button:focus {
+    background: #a78bfa;
+    outline: none;
+  }
+  /* Gallery */
+  .gallery-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    border: 2px solid #374151;
+    height: 200px; /* Set a fixed height for uniformity */
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 100%; /* Ensures the media fits the fixed height */
+    display: block;
+    transition: transform 0.3s ease;
+    object-fit: cover; /* Maintains aspect ratio and covers the area */
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video,
+.gallery-item:focus-within img,
+.gallery-item:focus-within video {
+    transform: scale(1.05); /* Scale effect on hover/focus */
+}
+.gallery-item figcaption {
+    position: absolute; /* Positioning the caption */
+    bottom: 0; /* Aligns the caption to the bottom of the item */
+    left: 0; /* Aligns the caption to the left */
+    right: 0; /* Aligns the caption to the right */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+    color: white; /* Text color */
+    padding: 8px; /* Padding around the text */
+    text-align: center; /* Center the text */
+    font-size: 14px; /* Font size */
+}
+  /* Testimonials */
+  .testimonials {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial-card {
+    background: #1f2937;
+    border-radius: 16px;
+    padding: 32px 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    text-align: center;
+    color: #a5b4fc;
+    user-select: none;
+  }
+  .testimonial-text {
+    margin-bottom: 1rem;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+  .testimonial-author {
+    font-weight: 700;
+    color: #7c3aed;
+  }
+  .testimonial-controls {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .testimonial-button {
+    background: #7c3aed;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+  .testimonial-button:hover,
+  .testimonial-button:focus {
+    background: #a78bfa;
+    outline: none;
+  }
+  /* Booking */
+  .booking-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #1f2937;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 36px rgba(124, 58, 237, 0.6);
+  }
+  .booking-form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #a5b4fc;
+  }
+  .booking-form select,
+  .booking-form input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 24px;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  .booking-form button {
+    background: #22d3ee;
+    border: none;
+    padding: 16px 0;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    color: #121212;
+    transition: background-color 0.3s ease;
+  }
+  .booking-form button:hover,
+  .booking-form button:focus {
+    background: #0e7490;
+    outline: none;
+  }
+  .booking-confirmation {
+    margin-top: 20px;
+    font-weight: 700;
+    color: #4ade80;
+    text-align: center;
+  }
+  /* About & Team */
+  .team-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 40px;
+  }
+  .team-card {
+    background: #1f2937;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .team-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+    border: 4px solid #7c3aed;
+  }
+  .team-name {
+    font-weight: 700;
+    color: #a5b4fc;
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+  }
+  .team-role {
+    color: #d1d5db;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .team-bio {
+    font-size: 0.95rem;
+    color: #9ca3af;
+  }
+  /* Blog */
+  .blog-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 36px;
+  }
+  .blog-post {
+    background: #111827;
+    border-radius: 20px;
+    padding: 24px 32px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.8);
+  }
+  .blog-post h3 {
+    margin-top: 0;
+    color: #7c3aed;
+  }
+  .blog-post p {
+    color: #d1d5db; 
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  /* Social */
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .social-link {
+    color: #7c3aed;
+    font-size: 2rem;
+    display: inline-flex;
+  }
+  .social-link:hover,
+  .social-link:focus {
+    color: #22d3ee;
+    outline: none;
+  }
+  /* Footer */
+  footer {
+    background: #111827;
+    color: #a1a1aa;
+    padding: 48px 16px 32px 16px;
+    border-top: 1px solid #3730a3;
+    margin-top: auto;
+  }
+  footer .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    gap: 24px;
+  }
+  footer h4 {
+    color: #7c3aed;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  footer a {
+    display: block;
+    margin-bottom: 8px;
+  }
+  footer p, footer .business-hours {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  /* Responsive */
+  @media (max-width: 640px) {
+    nav.desktop-nav {
+      display: none;
+    }
+    .mobile-nav-wrapper {
+      display: block;
+    }
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+    section {
+      padding: 48px 12px;
+    } b
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .services-list,
+    .team-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    footer .footer-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  /* Scrollbar styles for modern browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #7c3aed99;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a href="#hero" class="logo" aria-label="Omega Auto Repairs Home">PERITY AGENCIES</a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#booking">Get a Quote</a>
+        <a href="#about">About Us</a>
+        <a href="#blog">blog</a>
+      </nav>
+      <div class="mobile-nav-wrapper">
+        <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+          <span class="material-icons">menu</span>
+        </button>
+        <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile primary navigation" tabindex="-1">
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#booking">Booking</a>
+          <a href="#about">About Us</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="hero" class="hero" role="banner">
+      <div class="hero-content">
+        <h1>Welcome to perity agencies</h1>
+        <p>Efficient Clearing & Forwarding Solutions for Seamless Logistics.</p>
+       <button class="btn-primary" onclick="window.location.href='tel:0721200549'" type="button">Call Now</button>
+       <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})" type="button">Book Now</button>
+      </div>
+    </section>
+    <section id="services" aria-labelledby="services-title">
+  <h2 id="services-title" class="section-title">Our Services</h2>
+     <div class="services-list">
+    <article class="service-card" tabindex="0" aria-describedby="service1-desc">
+      <span class="material-icons service-icon" aria-hidden="true">directions_boat</span>
+      <h3>Ocean Freight</h3>
+      <p id="service1-desc">
+        At Perity Agencies, we provide reliable and cost-effective ocean freight solutions for both full container loads (FCL) and less-than-container loads (LCL).
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service2-desc">
+      <span class="material-icons service-icon" aria-hidden="true">flight_takeoff</span>
+      <h3>Air Freight</h3>
+      <p id="service2-desc">
+        When speed matters, our air freight services guarantee fast and secure delivery of your goods to any global destination.
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service3-desc">
+      <span class="material-icons service-icon" aria-hidden="true">train_front</span>
+      <h3>Train Freight</h3>
+      <p id="service3-desc">
+        Our rail freight solutions offer an efficient and eco-friendly way to move large volumes of cargo across regions.
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service4-desc">
+      <span class="material-icons service-icon" aria-hidden="true">local_shipping</span>
+      <h3>Road Freight</h3>
+      <p id="service4-desc">
+        For flexible and door-to-door delivery, our road freight services connect ports, airports, and inland destinations seamlessly.
+    </article></div>
+    <h2 class="section-title">Imports</h2>
+      <div class="service-grid" role="list">
+    <article class="service-card" tabindex="0" aria-describedby="service5-desc">
+      <h3>Cars</h3>
+      <p id ="service1-desc">
+      <figure class="service-item" role="listitem" tabindex="0">
+            <img src="cars.png" alt="cars" />
+            <figcaption></figcaption>
+        </figure>
+      </p>  
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service6-desc">
+      <h3>Bitumen</h3>
+      <p id="service6-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="bitumen.png" alt="bitumen" />
+            <figcaption></figcaption>
+        </figure>
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service7-desc">
+      <h3>Sulphur</h3>
+      <p id="service7-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+        <img src="sulpher.png" alt="sulpher" />
+        <figcaption></figcaption>
+        </figure>
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service8-desc">
+      <h3>Machinery</h3>
+      <p id="service8-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="heavy machinery.png" alt="Machinery" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service9-desc">
+      <h3>Iron Coils</h3>
+      <p id="service9-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="iron coils.jpg" alt="Iron" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service10-desc">
+      <h3>Steel Purlins</h3>
+      <p id="service10-desc">
+       <figure class="service-item" role="listitem" tabindex="0">
+            <img src="steel.png" alt="Steel" />
+            <figcaption></figcaption>
+        </figure>
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service11-desc">
+      <h3>Sugar</h3>
+      <p id="service11-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="suger.png" alt="Sugar" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service12-desc">
+      <h3>Rice</h3>
+      <p id="service12-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="rice.png" alt="Rice" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+     <article class="service-card" tabindex="0" aria-describedby="service12-desc">
+      <h3>Raw Materials</h3>
+      <p id="service12-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="raw materials.png" alt="Raw materials" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+      </div>
+    <h2 class="section-title">Exports</h2>
+       <div class="service-grid" role="list">
+    <article class="service-card" tabindex="0" aria-describedby="service13-desc">
+      <h3>Pet flakes</h3>
+      <p id="service13-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="pet.png" alt="pet" />
+            <figcaption></figcaption>
+        </figure>
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service14-desc">
+      <h3>Sisal</h3>
+      <p id="service14-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="sisal.png" alt="Sisal" />
+            <figcaption></figcaption>
+        </figure>
+    </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service15-desc">
+      <h3>Tea</h3>
+      <p id="service15-desc">
+     <figure class="service-item" role="listitem" tabindex="0">
+            <img src="tea.png" alt="tea" />
+            <figcaption></figcaption>
+        </figure>   
+    </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service16-desc">
+      <h3>Coffee</h3>
+      <p id="service16-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="coffee.png" alt="Coffee" />
+            <figcaption></figcaption>
+        </figure>
+      </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service17-desc">
+      <h3>Avocado</h3>
+      <p id="service17-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="avocado.png" alt="Avocado" />
+            <figcaption></figcaption>
+        </figure>
+       </p>
+    </article>
+    <article class="service-card" tabindex="0" aria-describedby="service18-desc">
+      <h3>Animal products</h3>
+      <p id="service18-desc">
+        <figure class="service-item" role="listitem" tabindex="0">
+            <img src="animal products.png" alt="Animal" />
+            <figcaption></figcaption>
+        </figure>
+     </p>
+    </article>
+  </div>
+</section>
+    <section id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="section-title">Location &amp; Contact</h2>
+  <div class="contact-info">
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="material-icons contact-icon" aria-hidden="true">location_on</span>
+        <address>Habour House,Moi Ave</address>
+      </div>
+      <div class="contact-item">
+        <span class="material-icons contact-icon" aria-hidden="true">call</span>
+        <a href="tel:+254721200549">+254 721 200 549</a>
+      </div>
+      <div class="contact-item">
+        <span class="material-icons contact-icon" aria-hidden="true">email</span>
+        <a href="mailto:info@perityagencies.co.ke">info@perityagencies.co.ke</a>
+      </div>
+      <div class="contact-item">
+        <span class="material-icons contact-icon" aria-hidden="true">whatsapp</span>
+        <a href="https://wa.me/254721200549" target="_blank" rel="noopener noreferrer" style="background-color: #25D366; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Chat on WhatsApp</a>
+      </div>
+
+      <form class="contact-form" aria-label="Contact form" id="contact-form" onsubmit="sendWhatsAppMessage(event)">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="contact-name" required />
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" name="contact-email" required />
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="contact-message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <script>
+        function sendWhatsAppMessage(event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          // Get the values from the form
+          const name = encodeURIComponent(document.getElementById('contact-name').value);
+          const email = encodeURIComponent(document.getElementById('contact-email').value);
+          const message = encodeURIComponent(document.getElementById('contact-message').value);
+
+          // Construct the WhatsApp message
+          const phoneNumber = '254721200549'; // The recipient's phone number
+          const whatsappMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+          const whatsappLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+          // Open the WhatsApp link
+          window.open(whatsappLink, '_blank');
+        }
+      </script>
+    </div>
+
+    <!-- Updated Google Maps embed with marker for Habour House Ltd, HARBOUR HSE, Moi Ave, Mombasa -->
+    <iframe
+      title="Perity Agencies Location on Google Maps"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.1234567890123!2d39.6507877!3d-4.0275252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f18112c36bf13%3A0xf6f177c0508e25d0!2sHabour%20House%2C%20Moi%20Ave!5e0!3m2!1sen!2ske!4v1687214068980!5m2!1sen!2ske"
+      allowfullscreen=""
+      loading="lazy"
+      class="map-embed"
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+  </div>
+</section>
+    <section id="gallery" aria-labelledby="gallery-title">
+    <h2 id="gallery-title" class="section-title">Gallery</h2>
+    <div class="gallery-grid" role="list">
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image1.jpg" alt="image1" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image2.jpg" alt="image2" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+             <img src="image3.jpg" alt="image3" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image4.jpg" alt="image4" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image5.jpg" alt="image5" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+             <img src="image6.jpg" alt="image6" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image7.jpg" alt="image7" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+            <img src="image8.jpg" alt="image8" />
+        </figure>
+        <figure class="gallery-item" role="listitem" tabindex="0">
+             <img src="image9.jpg" alt="image9" />
+        </figure>
+    </div>
+</section>
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title" class="section-title">What Our Customers Say</h2>
+      <div class="testimonials" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+        <article class="testimonial-card" tabindex="0" id="testimonial-text">
+          <p class="testimonial-text" id="testimonial-content">"Services at Perity Agencies are reliable and professional. I would recommend them any day."</p>
+          <p class="testimonial-author" id="testimonial-author">Ryan Wamae.</p>
+        </article>
+        <div class="testimonial-controls" role="region" aria-label="Testimonial navigation">
+          <button class="testimonial-button" id="testimonial-prev" aria-label="Previous testimonial" type="button">
+            <span class="material-icons">arrow_back</span>
+          </button>
+          <button class="testimonial-button" id="testimonial-next" aria-label="Next testimonial" type="button">
+            <span class="material-icons">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="booking" aria-labelledby="booking-title">
+    <h2 id="booking-title" class="section-title">Book Your Appointment</h2>
+    <div class="booking-wrapper">
+        <form id="booking-form" class="booking-form" aria-live="polite" aria-relevant="additions" onsubmit="sendWhatsAppBooking(event)">
+            <label for="booking-name">Full Name</label>
+            <input type="text" id="booking-name" name="booking-name" required aria-required="true" />
+            <label for="booking-phone">Phone Number</label>
+            <input type="tel" id="booking-phone" name="booking-phone" required aria-required="true" pattern="\\+?[0-9\\s-]{7,15}" placeholder="+254 7xx xxx xxx" />
+            <label for="booking-service">Select Service</label>
+            <select id="booking-service" name="booking-service" required aria-required="true" onchange="enableTimeSlot()">
+                <option value="" disabled selected>Select a service</option>
+                <option value="bitumen">importing bitumen</option>
+                <option value="car">importing a car</option>
+                <option value="machinery">importing machinery</option>
+                <option value="sugar">importing sugar</option>
+                <option value="sulpher">importing sulpher</option>
+                <option value="rice">importing rice</option>
+                <option value="iron coils">importing iron coils</option>
+                <option value="steel">importing steel Purlins</option>
+                <option value="raw Materials">importing raw materials</option>
+                <option value="tea">exporting tea</option>
+                <option value="coffee">exporting coffee</option>
+                <option value="sisal">exporting sisal</option>
+                <option value="avocado">exporting avocado</option>
+                <option value="pet flakes">exporting pet flakes</option>
+                <option value="animal products">exporting animal products</option>
+            </select>
+            <label for="booking-date">Select a Date (discussion)</label>
+            <input type="date" id="booking-date" name="booking-date" required aria-required="true" min="" onchange="enableTimeSlot()" />
+            <label for="booking-time">Select Time Slot</label>
+            <select id="booking-time" name="booking-time" required aria-required="true">
+                <option value="" disabled selected>Select a time</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">01:00 PM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+                <option value="16:00">04:00 PM</option>
+                <option value="17:00">05:00 PM</option>
+            </select>
+            <button type="submit">Confirm Booking</button>
+            <p class="booking-confirmation" id="booking-confirmation" role="alert" aria-live="assertive"></p>
+        </form>
+    </div>
+</section>
+
+<script>
+function enableTimeSlot() {
+    const dateInput = document.getElementById('booking-date').value;
+    const timeSelect = document.getElementById('booking-time');
+
+    // Enable the time slot select if a date is selected
+    if (dateInput) {
+        timeSelect.disabled = false;
+    } else {
+        timeSelect.disabled = true;
+    }
+}
+
+function sendWhatsAppBooking(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get the values from the form
+    const name = encodeURIComponent(document.getElementById('booking-name').value);
+    const phone = encodeURIComponent(document.getElementById('booking-phone').value);
+    const service = encodeURIComponent(document.getElementById('booking-service').value);
+    const date = encodeURIComponent(document.getElementById('booking-date').value);
+    const time = encodeURIComponent(document.getElementById('booking-time').value);
+
+    // Construct the WhatsApp message
+    const phoneNumber = '254721200549'; // The recipient's phone number (without the +)
+    const whatsappMessage = `Booking Details:\nName: ${name}\nPhone: ${phone}\nService: ${service}\nDate: ${date}\nTime: ${time}`;
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+    // Open the WhatsApp link
+    window.open(whatsappLink, '_blank');
+}
+</script>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About Us</h2>
+      <div class="container">
+        <p style="max-width: 900px; margin: 0 auto 48px auto; color:#d1d5db; font-size: 1.125rem; text-align:center;">
+        We are a certified clearing and forwarding company providing logistics solutions. Our mission is to simplify international trade and ensure timely, cost-effective delivery of goods, services and general supplies.we serve your needs by providing;Fast Customs Clearance
+,Freight Forwarding,
+Logistics Management,
+Supply Chain Solutions and
+Real-time tracking on your cargo.At Perity Agencies, we combine efficiency, reliability, and affordability to keep your cargo moving. Contact us today for tailored freight solutions.
+        <div class="team-grid" role="list" aria-label="Team members list">
+          <article class="team-card" role="listitem" tabindex="0" aria-label="Team member: wilson wamae, owner">
+            <img src="Wilson.heic" alt="Portrait photo of wilson." class="team-photo" />
+            <h3 class="team-name">sir wilson wamae.</h3>
+            <p class="team-role">owner</p>
+            <p class="team-bio">Sir wilson wamae brings 15 years of hands-on experience.His expertise ensures precision and reliability in every job on this field.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="blog" aria-labelledby="blog-title">
+      <h2 id="blog-title" class="section-title">Exclusive Tips</h2>
+      <div class="blog-list" role="list">
+        <article class="blog-post" role="listitem" tabindex="0">
+          <h3>For Efficient Shipping</h3>
+          <p>Properly label and document all shipments,use durable,right-sized packaging and choose reliable carriers that track shipments.</p>
+        </article>
+        <article class="blog-post" role="listitem" tabindex="0">
+          <h3>Did You Know</h3>
+          <p>Understanding customs regulations can make or break your import/export process.At Perit Aagencies we simplify the journey by staying updated on every change.</p>
+        </article>
+        <article class="blog-post" role="listitem" tabindex="0">
+          <h3>Get Your Farm/Animal products To International Markets</h3>
+          <p>Ensure top-notch product quality.</p>
+          <p>Comply with epxert regulations</p>
+          <P>Partner with perity Agencies for seamless logistics</P>
+        </article>
+      </div>
+    </section>
+    <section id="social" aria-label="Social media links" style="padding: 32px 0; text-align:center;">
+      <h2 class="section-title" style="color:#a5b4fc;">Connect With Us</h2>
+      <div class="social-links">
+        <a href="https://facebook.com/omegaautorepairs" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+          <span class="material-icons" style="font-size:2rem;">facebook</span>
+        </a>
+        <a href="https://instagram.com/omegaautorepairs" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+          <span class="material-icons" style="font-size:2rem;">instagram</span>
+        </a>
+        <a href="https://tiktok.com/@omegaautorepairs" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-link">
+           <span class="material-icons" style="font-size:2rem;">tiktok</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container" role="contentinfo">
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
+      <div>
+        <h4>Business Hours</h4>
+        <p>Mon-Fri:8AM-6PM</p>
+        <p>Sat:9AM-12PM</p>
+      </div>
+      <div style="grid-column: span 2; font-size: 0.85rem; text-align:center; margin-top: 32px; color: #6b7280;">
+        &copy; 2025 perity agencies. All rights reserved. | Terms &amp; Conditions apply.
+      </div>
+    </div>
+  </footer>
+<script>
+  // Mobile menu toggle
+  const mobileToggleBtn = document.getElementById('mobile-nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  mobileToggleBtn.addEventListener('click', () => {
+    const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+    mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+    mobileNav.classList.toggle('show');
+    if (!isExpanded) {
+      mobileNav.focus();
+    }
+  });
+  // Close mobile nav on link click
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('show');
+      mobileToggleBtn.setAttribute('aria-expanded', false);
+    });
+  });
+  // Testimonials data and logic
+  const testimonials = [
+    {
+      text: 'Services at Perity Agencies are reliable and professional. I would recommend them any day.',
+      author: 'Ryan Wamae.'
+    },
+    {
+      text: 'I recently cleared my car through Perity Agencies, and the experience was nothing short of exceptional. The entire process was incredibly smooth—they handled all the heavy lifting with professionalism and efficiency. I was impressed by how seamless everything felt; all I had to do was collect my car and drive away.If youre looking for a reliable, transparent, and stress-free clearing and forwarding agent, I highly recommend Perity Agencies. Whether your job is simple or complex, theyll get it done right. You wont be disappointed!.',
+      author: 'Lawrence Gichuki.'
+    },
+    {
+      text:'If you want a clearing agency that delivers every single time Perity Agencies is it!This was my second time clearing a car with them, and once again, they exceeded my expectations. The process was seamless, well-organized, and completely stress-free with zero delays and frequent, helpful updates all the way through. Special thanks to Wilson, who went above and beyond  responsive, professional, and incredibly helpful throughout. Reliable, efficient, and trustworthy I wouldnt go anywhere else!.',
+      author:'Lucy Gichuki.'
+    },
+  ];
+  let currentTestimonialIndex = 0;
+  const testimonialContent = document.getElementById('testimonial-content');
+  const testimonialAuthor = document.getElementById('testimonial-author');
+  function updateTestimonial() {
+    const t = testimonials[currentTestimonialIndex];
+    testimonialContent.textContent = `"${t.text}"`;
+    testimonialAuthor.textContent = `— ${t.author}`;
+  }
+  document.getElementById('testimonial-prev').addEventListener('click', () => {
+    currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+    updateTestimonial();
+  });
+  document.getElementById('testimonial-next').addEventListener('click', () => {
+    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+    updateTestimonial();
+  });
+  updateTestimonial();
+
+  // Booking form date min = today
+  const bookingDateInput = document.getElementById('booking-date');
+  const today = new Date().toISOString().split('T')[0];
+  bookingDateInput.setAttribute('min', today);
+  const bookingTimeSelect = document.getElementById('booking-time');
+  // Generate time slots (9am to 5pm, hourly) for simplicity
+  function generateTimeSlots() {
+    bookingTimeSelect.innerHTML = '<option value="" disabled selected>Select a time</option>';
+    for (let hour = 9; hour <= 17; hour++) {
+      const timeString = hour.toString().padStart(2, '0') + ':00';
+      const option = document.createElement('option');
+      option.value = timeString;
+      option.textContent = timeString;
+      bookingTimeSelect.appendChild(option);
+    }
+    bookingTimeSelect.disabled = false;
+  }
+  bookingDateInput.addEventListener('change', () => {
+    if (bookingDateInput.value) {
+      generateTimeSlots();
+    } else {
+      bookingTimeSelect.disabled = true;
+      bookingTimeSelect.innerHTML = '<option value="" disabled selected>Select a time</option>';
+    }
+  });
+
+  // Handle booking form submission
+  const bookingForm = document.getElementById('booking-form');
+  const bookingConfirmation = document.getElementById('booking-confirmation');
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!bookingForm.checkValidity()) {
+      bookingForm.reportValidity();
+      return;
+    }
+    // Simulate booking confirmation
+    bookingConfirmation.textContent = `Thank you, ${bookingForm['booking-name'].value}! Your appointment for ${bookingForm['booking-service'].selectedOptions[0].text} on ${bookingForm['booking-date'].value} at ${bookingForm['booking-time'].value} has been booked. We will contact you shortly.`;
+    bookingForm.reset();
+    bookingTimeSelect.disabled = true;
+  });
+
+  // Simple contact form submission handling
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    alert('Thank you for your message! We will get back to you soon.');
+    contactForm.reset();
+  });
+</script>
+</body>
+</html>
